@@ -1,19 +1,24 @@
-import path from "path";
-import HtmlWebPackPlugin from "html-webpack-plugin";
-import globImporter from "node-sass-glob-importer";
-import TerserPlugin from "terser-webpack-plugin";
-import OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin";
+const { resolve } = require("path");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const globImporter = require("node-sass-glob-importer");
+const TerserPlugin = require("terser-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: path.resolve(__dirname, "src", "index.tsx"),
+  entry: resolve(__dirname, "src", "index.tsx"),
   output: {
-    path: path.resolve(__dirname, "build"),
+    path: resolve(__dirname, "build"),
     filename: "build.js",
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
-    modules: [path.resolve(__dirname, "src"), "node_modules"],
+    modules: [resolve(__dirname, "src"), "node_modules"],
+    alias: {
+      Assets: resolve(__dirname, "src/assets"),
+      Components: resolve(__dirname, "src/components"),
+      Pages: resolve(__dirname, "src/pages"),
+    },
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -70,6 +75,7 @@ module.exports = {
 
   devServer: {
     historyApiFallback: true,
+    hot: true,
   },
   optimization: {
     minimizer: [

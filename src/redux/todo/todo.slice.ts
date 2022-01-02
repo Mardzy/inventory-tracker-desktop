@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { AppDispatch, AppThunk } from "redux/store";
 
 export interface TodoProps {
   todos: any[];
@@ -76,18 +75,5 @@ export const todoSlice = createSlice({
     },
   },
 });
-export const { addToDo, removeTodo } = todoSlice.actions;
-//  without asyncThunk. No need for extraReducers
 
-// export const fetchquotes = (): AppThunk => async (dispatch: AppDispatch) => {
-//   try {
-//     dispatch(setLoading(true));
-//     const response = await fetch("https://jsonplaceholder.typicode.com/users");
-//     const data = await response.json();
-//     dispatch(addUser(data));
-//     dispatch(setLoading(false));
-//   } catch (error) {
-//     dispatch(setLoading(false));
-//     dispatch(setError(error));
-//   }
-// };
+export const { addToDo, removeTodo } = todoSlice.actions;

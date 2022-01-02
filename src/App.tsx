@@ -1,6 +1,16 @@
 import React from "react";
-import Home from "pages/home";
-import "assets/styles/index.scss";
-import Routes from "pages/routes";
+import { hot } from "react-hot-loader";
 
-export const App: React.FC = () => <Routes />;
+import "assets/styles/index.scss";
+
+import Routes from "pages/routes";
+import { Header } from "components";
+
+const App: React.FC = () => (
+  <>
+    <Header />
+    <Routes />
+  </>
+);
+
+export default hot(module)(App);
