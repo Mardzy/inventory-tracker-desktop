@@ -1,13 +1,15 @@
 import React from "react";
 import { hot } from "react-hot-loader";
+import { CssBaseline } from "@mui/material";
 
-import "assets/styles/index.scss";
+import "styles/index.scss";
 
 import Routes from "pages/routes";
 import { Header } from "components";
 
 const App: React.FC = () => (
   <>
+    <CssBaseline />
     <Header />
     <Routes />
   </>

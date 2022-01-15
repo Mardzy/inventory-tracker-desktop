@@ -12,13 +12,14 @@ module.exports = {
     filename: "build.js",
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx"],
-    modules: [resolve(__dirname, "src"), "node_modules"],
+    extensions: [".ts", ".tsx", ".js", ".jsx", "scss"],
     alias: {
-      Assets: resolve(__dirname, "src/assets"),
-      Components: resolve(__dirname, "src/components"),
-      Pages: resolve(__dirname, "src/pages"),
+      assets: resolve(__dirname, "src/assets"),
+      components: resolve(__dirname, "src/components"),
+      pages: resolve(__dirname, "src/pages"),
+      "mui/styled-engine": "@mui/styled-engine-sc",
     },
+    modules: [resolve(__dirname, "src"), "node_modules"],
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -67,12 +68,19 @@ module.exports = {
         exclude: /\.module\.scss$/,
       },
       {
-        test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
-        use: ["file-loader"],
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "fonts/",
+            },
+          },
+        ],
       },
     ],
   },
-
   devServer: {
     historyApiFallback: true,
     hot: true,

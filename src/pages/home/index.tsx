@@ -1,16 +1,14 @@
 import React from "react";
-import ClickMe from "components/molecules/todo";
-import ClickMeClass from "components/molecules/todo-class-component";
 
-const Home = () => {
-  return (
-    <div className="p-home">
-      {/* Functional component  */}
-      <ClickMe />
-      {/* Class component */}
-      {/* <ClickMeClass /> */}
-    </div>
-  );
-};
+import { Container, Typography } from "@mui/material";
+import { Flex } from "components";
+
+const Home = () => (
+  <Container maxWidth="xl">
+    <Flex bgcolor="#cfe8fc" height="100vh">
+      <Typography variant="h1">Hello World!</Typography>
+    </Flex>
+  </Container>
+);
 
 export default Home;

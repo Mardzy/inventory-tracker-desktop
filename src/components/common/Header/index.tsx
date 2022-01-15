@@ -2,7 +2,6 @@ import React from "react";
 import {
   Box,
   Button,
-  CssBaseline,
   Divider,
   IconButton,
   List,
@@ -54,7 +53,7 @@ const Header = (props: Props) => {
     setState({ ...state, right: open });
   };
 
-  const list = () => (
+  const MenuList = () => (
     <Box
       sx={{ width: 250 }}
       role="presentation"
@@ -86,14 +85,13 @@ const Header = (props: Props) => {
   );
 
   return (
-    <React.Fragment>
-      <CssBaseline />
+    <>
       <HideOnScroll {...props}>
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static">
+          <AppBar>
             <Toolbar>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                News
+                Inventory Tracker
               </Typography>
               <Button sx={{ mr: [3, 8] }} color="inherit">
                 Login
@@ -118,9 +116,9 @@ const Header = (props: Props) => {
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
       >
-        {list()}
+        <MenuList />
       </SwipeableDrawer>
-    </React.Fragment>
+    </>
   );
 };
 
