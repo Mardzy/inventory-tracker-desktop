@@ -1,12 +1,18 @@
 import React from "react";
 
-import { Container, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import { Flex } from "components";
 
 const Home = () => (
   <Container maxWidth="xl">
-    <Flex bgcolor="#cfe8fc" height="100vh">
-      <Typography variant="h1">Hello World!</Typography>
+    <Flex
+      alignItems="center"
+      justifyContent="center"
+      height="100vh"
+      width="100%"
+      flexDirection="column"
+    >
+      <Typography variant="h1">Hello World</Typography>
     </Flex>
   </Container>
 );
