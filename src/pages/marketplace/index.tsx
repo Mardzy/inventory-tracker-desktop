@@ -1,9 +1,9 @@
 import React from "react";
 
-import { Box, Container, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Flex } from "components";
 
-const Home = () => (
+const Marketplace = () => (
   <Flex
     alignItems="center"
     justifyContent="center"
@@ -11,8 +11,8 @@ const Home = () => (
     width="100%"
     flexDirection="column"
   >
-    <Typography variant="h1">Hello World</Typography>
+    <Typography variant="h1">I'm a marketplace</Typography>
   </Flex>
 );
 
-export default Home;
+export default Marketplace;

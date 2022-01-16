@@ -2,23 +2,18 @@ import React from "react";
 import {
   Box,
   Button,
-  Divider,
   IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   SwipeableDrawer,
   Typography,
   Toolbar,
 } from "@mui/material";
-import {
-  Menu as MenuIcon,
-  MoveToInbox as InboxIcon,
-  Mail as MailIcon,
-} from "@mui/icons-material";
+import { Menu as MenuIcon } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
-import { AppBar, HideOnScroll } from "components/common/Header/components";
+import { AppBar, HideOnScroll, MenuList } from "./components";
+
+import { routes } from "routes";
+
 interface Props {
   /**
    * Injected by the documentation to work in an iframe.
@@ -53,46 +48,16 @@ const Header = (props: Props) => {
     setState({ ...state, right: open });
   };
 
-  const MenuList = () => (
-    <Box
-      sx={{ width: 250 }}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
-
   return (
     <>
       <HideOnScroll {...props}>
-        <Box sx={{ flexGrow: 1 }}>
+        <Box flexGrow={1}>
           <AppBar>
             <Toolbar>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Inventory Tracker
+                <Link to={routes.home}>Inventory Tracker</Link>
               </Typography>
+
               <Button sx={{ mr: [3, 8] }} color="inherit">
                 Login
               </Button>
@@ -116,7 +81,7 @@ const Header = (props: Props) => {
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
       >
-        <MenuList />
+        <MenuList toggleDrawer={toggleDrawer} />
       </SwipeableDrawer>
     </>
   );

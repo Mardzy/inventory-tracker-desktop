@@ -4,14 +4,12 @@ import { CssBaseline } from "@mui/material";
 
 import "styles/index.scss";
 
-import Routes from "pages/routes";
-import { Header } from "components";
+import Routing from "routes";
 
 const App: React.FC = () => (
   <>
     <CssBaseline />
-    <Header />
-    <Routes />
+    <Routing />
   </>
 );
 
