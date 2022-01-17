@@ -11,6 +11,7 @@ import {
   MoveToInbox as InboxIcon,
   Mail as MailIcon,
   Storefront as StorefrontIcon,
+  AddCircle as AddCircleIcon,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
@@ -32,10 +33,18 @@ const MenuList = ({
     <List>
       <Link to={routes.marketplace}>
         <ListItem button>
+          <ListItemText primary="Marketplace" />
           <ListItemIcon>
             <StorefrontIcon />
           </ListItemIcon>
-          <ListItemText primary="Marketplace" />
+        </ListItem>
+      </Link>
+      <Link to={routes.addToCollection}>
+        <ListItem button>
+          <ListItemText primary="Add to Collection" />
+          <ListItemIcon>
+            <AddCircleIcon />
+          </ListItemIcon>
         </ListItem>
       </Link>
     </List>
