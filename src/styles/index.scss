@@ -1,12 +1,13 @@
 @import "~font-awesome/css/font-awesome.css";
-
-* {
+@import "components";
+html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow:auto;
 }
 
 body {
   font-family: roboto, sans-serif;
-  background: radial-gradient(white 40%, #ffdee4);
+  background: radial-gradient(white 40%, #f0f7ff);
 }

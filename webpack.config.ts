@@ -18,7 +18,6 @@ module.exports = {
       components: resolve(__dirname, "src/components"),
       pages: resolve(__dirname, "src/pages"),
       routes: resolve(__dirname, "src/routes"),
-      "mui/styled-engine": "@mui/styled-engine-sc",
     },
     modules: [resolve(__dirname, "src"), "node_modules"],
   },

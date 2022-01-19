@@ -33,7 +33,7 @@ const FilterItem: FC<FilterItemProps> = ({ title, details }) => {
         aria-controls="panel1bh-content"
         id="panel1bh-header"
       >
-        <Typography>{title}</Typography>
+        <Typography align="center">{title}</Typography>
       </AccordionSummary>
       <AccordionDetails>{details}</AccordionDetails>
     </Accordion>

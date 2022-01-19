@@ -11,7 +11,7 @@ interface FlexProps {
   flexDirection?: string | string[] | undefined;
   height?: string | string[] | undefined;
   justifyContent?: string | string[] | undefined;
-  width?: string | string[] | undefined;
+  width?: string | string[] | number | number[] | undefined;
 }
 
 const Flex = styled(Box, {

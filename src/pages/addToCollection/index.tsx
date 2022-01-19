@@ -1,21 +1,17 @@
 import React, { SyntheticEvent, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
   Box,
+  FormControl,
   IconButton,
   InputAdornment,
+  Paper,
+  styled,
   TextField,
-  Typography,
 } from "@mui/material";
-import {
-  ExpandMore as ExpandMoreIcon,
-  Search as SearchIcon,
-} from "@mui/icons-material";
+import { Search as SearchIcon } from "@mui/icons-material";
 
-import { FilterList, Flex } from "components";
+import { FilterList, Flex, PageTitle } from "components";
 
 interface SearchProps {
   search: string;
@@ -47,38 +43,41 @@ const AddToCollection = () => {
   const onSearchSubmit: SubmitHandler<SearchProps> = ({ search }, event) => {
     event?.preventDefault();
     event?.stopPropagation();
-    console.log("res: ", search);
     setSearchValue(search);
   };
 
-  console.log("searchValue: ", searchValue);
   return (
     <Flex
       alignItems="center"
       justifyContent="flex-start"
-      height="90vh"
+      height="2000px"
       width="100%"
       flexDirection="column"
     >
-      <Typography variant="h3" component="h1" mb={3}>
-        Add to Collection
-      </Typography>
-      <Flex my={5} flexDirection="column" alignItems="center" width="100%">
-        <Box>
-          <form onSubmit={handleSubmit(onSearchSubmit)}>
-            <Controller
-              control={control}
-              name="search"
-              render={({ field }) => (
+      <PageTitle color="black">Add to Collection</PageTitle>
+      <Flex
+        my={5}
+        flexDirection="column"
+        alignItems="center"
+        width={[1, 4 / 5, 3 / 5]}
+      >
+        <FormControl fullWidth onSubmit={handleSubmit(onSearchSubmit)}>
+          <Controller
+            control={control}
+            name="search"
+            render={({ field }) => (
+              <Paper>
                 <TextField
-                  id="outlined-name"
+                  fullWidth
+                  id="input-with-icon-textfield"
                   label="Search for card"
+                  margin="none"
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
                         <IconButton
                           aria-label="search"
-                          color="primary"
+                          color="default"
                           type="submit"
                         >
                           <SearchIcon />
@@ -88,10 +87,10 @@ const AddToCollection = () => {
                   }}
                   {...field}
                 />
-              )}
-            />
-          </form>
-        </Box>
+              </Paper>
+            )}
+          />
+        </FormControl>
         <FilterList />
       </Flex>
       <Box>No results....</Box>
