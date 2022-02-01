@@ -1,10 +1,11 @@
 import { configureStore, Action, ThunkAction } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
-import rootReducer, { RootState } from "./root.reducer";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
+
+import rootReducer, { RootState } from "./rootReducer";
 
 const persistConfig = {
   key: "root",
@@ -16,7 +17,7 @@ const middleware =
 
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: middleware,
+  middleware,
   devTools: process.env.NODE_ENV !== "production",
 });
 

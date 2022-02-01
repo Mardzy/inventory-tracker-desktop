@@ -6,7 +6,7 @@ import React, {
   RefObject,
 } from "react";
 import { todoSelector } from "redux/todo/todo.selector";
-import { RootState } from "redux/root.reducer";
+import { RootState } from "redux/rootReducer";
 import { connect } from "react-redux";
 import Input from "components/atoms/input";
 import Button from "components/atoms/button";
