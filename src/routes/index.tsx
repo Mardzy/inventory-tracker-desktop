@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Container } from "@mui/material";
 
-import { AddToCollection, Home, Marketplace } from "pages";
+import { AddToCollection, Collection, Home, Marketplace } from "pages";
 import { Header } from "components";
 
 export const routes = {
@@ -17,9 +17,10 @@ const Routing = () => (
     <Header />
     <Container maxWidth="xl" sx={{ paddingTop: "10vh" }}>
       <Routes>
+        <Route path={routes.addToCollection.to} element={<AddToCollection />} />
+        <Route path={routes.collection.to} element={<Collection />} />
         <Route path={routes.home.to} element={<Home />} />
         <Route path={routes.marketplace.to} element={<Marketplace />} />
-        <Route path={routes.addToCollection.to} element={<AddToCollection />} />
       </Routes>
     </Container>
   </>

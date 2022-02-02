@@ -5,12 +5,13 @@ import React, {
   Ref,
   RefObject,
 } from "react";
-import { todoSelector } from "redux/todo/todo.selector";
-import { RootState } from "redux/rootReducer";
 import { connect } from "react-redux";
+
+import { todoSelector } from "reduxConfig/todo/todo.selector";
+import { RootState } from "reduxConfig/config/rootReducer";
 import Input from "components/atoms/input";
 import Button from "components/atoms/button";
-import { addToDo, fetchquotes, TodoProps } from "redux/todo/todo.slice";
+import { addToDo, fetchquotes, TodoProps } from "reduxConfig/todo/todo.slice";
 import StickyNote from "components/atoms/sticky-note";
 
 interface TodoClassProps {

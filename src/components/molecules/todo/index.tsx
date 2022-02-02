@@ -2,16 +2,15 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import Input from "components/atoms/input";
 import Button from "components/atoms/button";
 import { useSelector } from "react-redux";
-import { todoSelector } from "redux/todo/todo.selector";
-import { UseAppDispatch } from "redux/store";
-import { addToDo, fetchquotes } from "redux/todo/todo.slice";
+import { todoSelector } from "reduxConfig/todo/todo.selector";
+import { UseAppDispatch } from "reduxConfig/config/store";
+import { addToDo, fetchquotes } from "reduxConfig/todo/todo.slice";
 import StickyNote from "components/atoms/sticky-note";
 
 const Todo = () => {
   const dispatch = UseAppDispatch();
-  const { todos, quotes, loading, error, errorMessage } = useSelector(
-    todoSelector
-  );
+  const { todos, quotes, loading, error, errorMessage } =
+    useSelector(todoSelector);
   const [text, setText] = useState("");
   const ref = useRef<HTMLInputElement>(null);
   const buttonClick = useCallback(() => {

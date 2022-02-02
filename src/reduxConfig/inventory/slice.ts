@@ -1,7 +1,11 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  PayloadAction,
+  createAsyncThunk,
+  SerializedError,
+} from "@reduxjs/toolkit";
 
 import { mockInventory } from "../mocks/inventory";
-import rootReducer from "redux/rootReducer";
 
 interface Card {
   cardId: string;
@@ -27,7 +31,7 @@ export interface Product {
 
 export interface InventoryProps {
   error: boolean;
-  errorMessage: string;
+  errorMessage: string | SerializedError;
   inventory: Product[];
   loading: boolean;
 }
@@ -42,12 +46,13 @@ export const initialState: InventoryProps = {
 // asyncThunk generate three extraReducers
 export const fetchInventory = createAsyncThunk(
   "inventory/fetchInventory",
-  () => {
+  (args, { rejectWithValue }) => {
+    console.log("here");
+    // thunkAPI.
     try {
-      return { ...initialState, inventory: mockInventory };
+      return mockInventory;
     } catch (err) {
-      console.log(err);
-      return err;
+      rejectWithValue(err as SerializedError);
     }
   }
 );
@@ -65,10 +70,31 @@ export const inventorySlice = createSlice({
       console.log("state: ", state);
     },
   },
+  extraReducers: ({ addCase }) => {
+    addCase(fetchInventory.fulfilled, ({ inventory }, { payload }) => {
+      inventory = payload as Product[];
+    });
+    addCase(fetchInventory.pending, ({ loading }) => {
+      loading = true as boolean;
+    });
+    addCase(
+      fetchInventory.rejected,
+      ({ error: err, errorMessage }, { error, payload }) => {
+        err = true as boolean;
+
+        if (payload) {
+          // @ts-ignore
+          errorMessage = action.payload.errorMessage as Error;
+        }
+
+        errorMessage = error;
+      }
+    );
+  },
 });
 
-export const {
-  actions: { addToInventory, removeFromInventory },
-} = inventorySlice;
+export const { addToInventory, removeFromInventory } = inventorySlice.actions;
 
 export type InventoryState = ReturnType<typeof inventorySlice.reducer>;
+
+export default inventorySlice.reducer;
