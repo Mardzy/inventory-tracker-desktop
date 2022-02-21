@@ -1,4 +1,5 @@
-export { default as AddToCollection } from "./addToCollection";
-export { default as Collection } from "./collection";
-export { default as Home } from "./home";
-export { default as Marketplace } from "./marketplace";
+export { default as AddToCollection } from "./AddToCollection";
+export { default as Collection } from "./Collection";
+export { default as CollectionItem } from "./CollectionItem";
+export { default as Home } from "./Home";
+export { default as Marketplace } from "./Marketplace";

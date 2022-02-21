@@ -21,7 +21,7 @@ import { Flex } from "components";
 import { MenuListItem } from "./";
 
 interface MenuListProps {
-  toggleDrawer: (open: boolean) => (event: KeyboardEvent | MouseEvent) => void;
+  closeDrawer: (event: KeyboardEvent | MouseEvent) => void;
 }
 
 /**
@@ -29,11 +29,11 @@ interface MenuListProps {
  * @param toggleDrawer
  * @constructor
  */
-const MenuList: FC<MenuListProps> = ({ toggleDrawer }) => (
+const MenuList: FC<MenuListProps> = ({ closeDrawer }) => (
   <Flex
     height="100%"
-    onClick={toggleDrawer(false)}
-    onKeyDown={toggleDrawer(false)}
+    onClick={closeDrawer}
+    onKeyDown={closeDrawer}
     flexDirection="column"
     justifyContent="space-between"
   >

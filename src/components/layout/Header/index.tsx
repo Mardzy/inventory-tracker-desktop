@@ -13,6 +13,7 @@ import { AppBar, DrawerHeader, HideOnScroll, MenuList } from "./components";
 
 import { routes } from "routes";
 import { LinkAsText } from "components";
+import { toggleDrawer } from "components/helpers";
 
 interface Props {
   /**
@@ -32,22 +33,7 @@ const Header = (props: Props) => {
     bottom: false,
     right: false,
   });
-
-  const toggleDrawer = (open: boolean) => (
-    event: React.KeyboardEvent | React.MouseEvent
-  ) => {
-    if (
-      event &&
-      event.type === "keydown" &&
-      ((event as React.KeyboardEvent).key === "Tab" ||
-        (event as React.KeyboardEvent).key === "Shift")
-    ) {
-      return;
-    }
-
-    setState({ ...state, right: open });
-  };
-
+  console.log("type disc", typeof toggleDrawer(false, state, setState));
   return (
     <>
       <HideOnScroll {...props}>
@@ -68,7 +54,7 @@ const Header = (props: Props) => {
                 color="inherit"
                 aria-label="menu"
                 sx={{ mr: [0, 0, 2] }}
-                onClick={toggleDrawer(true)}
+                onClick={toggleDrawer(true, state, setState)}
               >
                 <MenuIcon />
               </IconButton>
@@ -79,12 +65,12 @@ const Header = (props: Props) => {
       <SwipeableDrawer
         anchor="right"
         open={state["right"]}
-        onClose={toggleDrawer(false)}
-        onOpen={toggleDrawer(true)}
+        onClose={toggleDrawer(false, state, setState)}
+        onOpen={toggleDrawer(true, state, setState)}
       >
-        <MenuList toggleDrawer={toggleDrawer} />
+        <MenuList closeDrawer={toggleDrawer(false, state, setState)} />
         <DrawerHeader>
-          <IconButton onClick={toggleDrawer(false)}>
+          <IconButton onClick={toggleDrawer(false, state, setState)}>
             <CancelIcon />
           </IconButton>
         </DrawerHeader>

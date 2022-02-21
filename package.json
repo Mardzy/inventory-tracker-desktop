@@ -27,6 +27,7 @@
     "@mui/material": "^5.2.5",
     "@mui/styled-engine-sc": "^5.1.0",
     "@reduxjs/toolkit": "^1.6.0",
+    "axios": "^0.26.0",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.21",
     "prettier": "^2.5.1",
