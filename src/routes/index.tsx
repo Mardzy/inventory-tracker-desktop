@@ -8,8 +8,8 @@ import {
   CollectionItem,
   Home,
   Marketplace,
-} from "pages";
-import { Header } from "components";
+} from "@containers";
+import { Header } from "@components";
 
 export const routes = {
   home: { to: "/", title: "Home" },
@@ -19,7 +19,7 @@ export const routes = {
   marketplace: { to: "/marketplace", title: "View Marketplace" },
 };
 
-const Routing = () => (
+export default () => (
   <>
     <Header />
     <Container maxWidth="xl" sx={{ paddingTop: "3vh" }}>
@@ -33,5 +33,3 @@ const Routing = () => (
     </Container>
   </>
 );
-
-export default Routing;

@@ -1,18 +1,19 @@
-import React from "react";
+import React, { FC } from "react";
 import { hot } from "react-hot-loader";
 import { CssBaseline } from "@mui/material";
 import { StyledEngineProvider } from "@mui/material/styles";
 
-import "styles/index.scss";
+import "@styles";
 
-import Routing from "routes";
-import { ScrollToTop } from "components";
+import Routes from "@routes";
 
-const App: React.FC = () => (
+import { ScrollToTop } from "@components";
+
+const App: FC = () => (
   <StyledEngineProvider injectFirst>
     <div id="back-to-top-anchor" />
     <CssBaseline />
-    <Routing />
+    <Routes />
     <ScrollToTop />
   </StyledEngineProvider>
 );

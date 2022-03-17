@@ -13,7 +13,7 @@ import { AppBar, DrawerHeader, HideOnScroll, MenuList } from "./components";
 
 import { routes } from "routes";
 import { LinkAsText } from "components";
-import { toggleDrawer } from "components/helpers";
+import { toggleDrawer } from "components/utils";
 
 interface Props {
   /**

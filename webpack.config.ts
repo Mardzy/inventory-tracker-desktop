@@ -14,10 +14,12 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx", "scss"],
     alias: {
-      assets: resolve(__dirname, "src/assets"),
-      components: resolve(__dirname, "src/components"),
-      pages: resolve(__dirname, "src/pages"),
-      routes: resolve(__dirname, "src/routes"),
+      "@assets": resolve(__dirname, "./src/assets"),
+      "@components": resolve(__dirname, "./src/components"),
+      "@containers": resolve(__dirname, "./src/containers"),
+      "@pages": resolve(__dirname, "./src/pages"),
+      "@routes": resolve(__dirname, "./src/routes"),
+      "@styles": resolve(__dirname, "./src/styles"),
     },
     modules: [resolve(__dirname, "src"), "node_modules"],
   },

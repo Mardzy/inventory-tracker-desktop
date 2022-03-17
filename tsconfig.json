@@ -18,10 +18,16 @@
     "noImplicitThis": true,
     "strictNullChecks": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      "*": ["src/*"],
-      "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
+      "@assets":["assets"],
+      "@components":["components"],
+      "@containers":["containers"],
+      "@pages":["pages"],
+      "@styles":["styles"],
+      "@theme":["theme"],
+      "@routes":["routes"],
+      "@types":["types"],
     }
   },
   "include": ["src"]

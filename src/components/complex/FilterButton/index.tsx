@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { Button, SwipeableDrawer } from "@mui/material";
 
-import { toggleDrawer } from "components/helpers";
+import { toggleDrawer } from "components/utils";
 import { FilterList, Flex } from "components";
 
 const FilterButton: FC = () => {

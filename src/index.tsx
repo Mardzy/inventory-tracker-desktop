@@ -6,7 +6,7 @@ import { persistStore } from "redux-persist";
 import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
-import store from "reduxConfig/config/store";
+import store from "config/store";
 
 render(
   <Provider store={store}>
