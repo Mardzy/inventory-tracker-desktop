@@ -5,20 +5,20 @@ import { Link } from "react-router-dom";
 
 import { CardItem, Flex, FilterButton } from "@components";
 
-import { fetchCollection } from "@slices";
+import { getCollection } from "@slices";
 import { RootState } from "@store";
 import { Collection as CollectionProps, CollectionCard, Status } from "@types";
 
 interface CollectionTypeProps {
-  fetchCollection: (userId: string) => void;
+  getCollection: (userId: string) => void;
   data: CollectionProps & Status;
 }
 
-const Collection: FC<CollectionTypeProps> = ({ fetchCollection, data }) => {
+const Collection: FC<CollectionTypeProps> = ({ getCollection, data }) => {
   const { error, collection, status } = data;
 
   useEffect(() => {
-    fetchCollection("me");
+    getCollection("me");
   }, [collection]);
 
   return (
@@ -53,11 +53,11 @@ const Collection: FC<CollectionTypeProps> = ({ fetchCollection, data }) => {
 };
 
 const mapStateToProps = ({ collection }: RootState) => ({
-  collection,
+  data: collection,
 });
 
 const mapDispatchToProps = {
-  fetchCollection,
+  getCollection,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Collection);

@@ -12,12 +12,13 @@ export const initialState: Collection & Status = {
   status: "idle",
 };
 
-export const fetchCollection = createAsyncThunk(
-  "collection/fetchCollection",
+export const getCollection = createAsyncThunk(
+  "collection/getCollection",
   async (userId: string | null, { rejectWithValue }) => {
     try {
       // console.log("args: ", userId);
       const response: Collection = JSON.parse(JSON.stringify(mockData));
+      // replace with fetchCollectionItem request
 
       return response as Collection;
     } catch (err) {
@@ -26,14 +27,7 @@ export const fetchCollection = createAsyncThunk(
   }
 );
 
-export const updateCollectionItem = createAsyncThunk(
-  "collection/updateCollectionItem",
-  async (item: CollectionCard, { rejectWithValue }) => {
-    // const res = baseApi.updateCollectionItem()
-  }
-);
-
-export const inventorySlice = createSlice({
+export const collectionSlice = createSlice({
   name: "collection",
   initialState,
   reducers: {
@@ -59,21 +53,21 @@ export const inventorySlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchCollection.pending.type]: (state) => {
+    [getCollection.pending.type]: (state) => {
       state.status = "pending";
     },
-    [fetchCollection.fulfilled.type]: (
+    [getCollection.fulfilled.type]: (
       state,
       { payload: { collection } }: PayloadAction<Collection>
     ) => {
       state.status = "fulfilled";
       state.collection = collection;
     },
-    [fetchCollection.rejected.type]: (state, payload) => {
+    [getCollection.rejected.type]: (state, payload) => {
       state.status = "rejected";
       state.error = payload.errorMessage;
     },
   },
 });
 
-export default inventorySlice.reducer;
+export default collectionSlice.reducer;
