@@ -1,7 +1,6 @@
-import { CollectionCard } from "./collection";
-import { SerializedError } from "@reduxjs/toolkit";
-
 export * from "./collection";
+export * from "./marketplace";
+export * from "./productDB";
 
 export interface Card {
   cardId: string;
@@ -14,20 +13,12 @@ export interface Card {
   serialNumbered?: number;
   setName: string;
   cardThickness: number;
-  ownedBy?: string;
-  id: string;
+  odds?: string;
+  owner?: string;
+  id: string | number;
 }
 
-export interface Product {
-  items: Card[] | CollectionCard[];
-  genre: string;
-  manufacturer: string;
-  productName: string;
-  year: string | number;
-}
-
-export interface Marketplace {
-  error?: string | SerializedError | null;
-  products: Product[];
-  loading: boolean;
+export interface Status {
+  error: string | null;
+  status: "idle" | "pending" | "fulfilled" | "rejected";
 }

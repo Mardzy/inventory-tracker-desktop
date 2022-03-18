@@ -1,6 +1,5 @@
 {
-  "owner": "me",
-  "collection": [
+  "items": [
     {
       "genre": "hockey",
       "year": "2020-21",
@@ -15,7 +14,7 @@
       "serialNumbered": 100,
       "cardThickness": 20,
       "owner": "me",
-      "id": "12345"
+      "id": "123453"
     },
     {
       "genre": "hockey",
@@ -31,7 +30,7 @@
       "serialNumbered": 100,
       "cardThickness": 20,
       "owner": "me",
-      "id": "12346"
+      "id": "123463"
     },
     {
       "genre": "hockey",
@@ -47,7 +46,7 @@
       "serialNumbered": 100,
       "cardThickness": 20,
       "owner": "me",
-      "id": "12347"
+      "id": "123473"
     },
     {
       "genre": "hockey",
@@ -63,7 +62,7 @@
       "serialNumbered": 100,
       "cardThickness": 20,
       "owner": "me",
-      "id": "12348"
+      "id": "123483"
     },
     {
       "genre": "hockey",
@@ -79,7 +78,7 @@
       "serialNumbered": 100,
       "cardThickness": 20,
       "owner": "me",
-      "id": "12349"
+      "id": "123493"
     },
     {
       "genre": "hockey",

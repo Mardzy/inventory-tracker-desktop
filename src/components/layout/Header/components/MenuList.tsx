@@ -16,7 +16,7 @@ import {
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
-import { routes } from "routes";
+import { routes } from "router";
 import { Flex } from "components";
 import { MenuListItem } from "./";
 

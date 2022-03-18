@@ -1,4 +1,4 @@
-import { Card, Marketplace } from ".";
+import { Card } from ".";
 
 /**
  * Collection Types
@@ -9,8 +9,18 @@ export interface CollectionCard extends Card {
   valueOutgoing?: number;
   dateIncoming?: Date;
   dateOutgoing?: Date;
+  genre?: string;
+  manufacturer?: string;
+  productName?: string;
+  year?: string | number;
+  status?:
+    | "for trade"
+    | "for sale"
+    | "exited collection"
+    | "personal collection";
 }
 
-export interface Collection extends Marketplace {
-  ownedBy?: string;
+export interface Collection {
+  owner: string | null;
+  collection: CollectionCard[];
 }

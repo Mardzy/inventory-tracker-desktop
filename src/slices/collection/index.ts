@@ -1,32 +1,35 @@
-import {
-  createSlice,
-  PayloadAction,
-  createAsyncThunk,
-  SerializedError,
-} from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 
-import mockData from "../mocks/collection.json";
+import mockData from "../mocks/productDB.json";
 import { createUniqueId } from "../utils";
 
-import { Collection, CollectionCard } from "@types";
+import { Collection, CollectionCard, Status } from "@types";
 
-export const initialState: Collection = {
+export const initialState: Collection & Status = {
+  collection: [],
   error: null,
-  products: [],
-  loading: false,
+  owner: null,
+  status: "idle",
 };
 
 export const fetchCollection = createAsyncThunk(
   "collection/fetchCollection",
-  async (userId, { rejectWithValue }) => {
+  async (userId: string, { rejectWithValue }) => {
     try {
       // console.log("args: ", userId);
       const response: Collection = JSON.parse(JSON.stringify(mockData));
 
-      return response;
+      return response.collection;
     } catch (err) {
-      rejectWithValue(err as SerializedError);
+      rejectWithValue((err as Error).message);
     }
+  }
+);
+
+export const updateCollectionItem = createAsyncThunk(
+  "collection/updateCollectionItem",
+  async (item: CollectionCard, { rejectWithValue }) => {
+    // const res = baseApi.updateCollectionItem()
   }
 );
 
@@ -36,38 +39,41 @@ export const inventorySlice = createSlice({
   reducers: {
     addToCollection: (state, { payload }: PayloadAction<CollectionCard>) => {
       payload.id = createUniqueId();
-      // console.log("state: ", state);
-      state.products.map((product) => product.items);
+
+      state.collection.push(payload);
     },
-    removeFromCollection: (
+    updateCollectionItem: (
       state,
-      { payload: { products } }: PayloadAction<Collection>
-    ) => {},
-    // updateValueIncoming: (
-    //   state,
-    //   { payload }: PayloadAction<CollectionCard>
-    // ) => {
-    //   const index = state.items.findIndex((item) => item.id === payload.id);
-    // },
+      { payload }: PayloadAction<CollectionCard>
+    ) => {
+      try {
+        const itemToUpdate = state.collection.find(
+          ({ id }) => id === payload.id
+        );
+      } catch (e) {
+        console.log(
+          "Change Collection Item Status Error: ",
+          (e as Error).message
+        );
+      }
+    },
   },
   extraReducers: {
     [fetchCollection.pending.type]: (state) => {
-      state.loading = true;
+      state.status = "pending";
     },
     [fetchCollection.fulfilled.type]: (
       state,
-      { payload: { products } }: PayloadAction<Collection>
+      { payload: { collection } }: PayloadAction<Collection>
     ) => {
-      state.loading = false;
-      state.products = products;
+      state.status = "fulfilled";
+      state.collection = collection;
     },
     [fetchCollection.rejected.type]: (state, payload) => {
-      state.loading = false;
+      state.status = "rejected";
       state.error = payload.errorMessage;
     },
   },
 });
-
-export const { addToCollection, removeFromCollection } = inventorySlice.actions;
 
 export default inventorySlice.reducer;

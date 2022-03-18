@@ -5,7 +5,7 @@ import { StyledEngineProvider } from "@mui/material/styles";
 
 import "@styles";
 
-import Routes from "@routes";
+import Routes from "./router";
 
 import { ScrollToTop } from "@components";
 

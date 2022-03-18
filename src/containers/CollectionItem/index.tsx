@@ -1,11 +1,10 @@
 import React, { FC } from "react";
-
+import { useLocation } from "react-router-dom";
 import { Typography } from "@mui/material";
 
 import { CardItem, Flex } from "@components";
 
 import { Card } from "@types";
-import { useLocation } from "react-router-dom";
 
 /**
  * @todo fallback for direct navigation

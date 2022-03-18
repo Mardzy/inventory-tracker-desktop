@@ -11,7 +11,7 @@ import {
   Product,
 } from "reduxConfig/inventory/slice";
 import { inventorySelector } from "reduxConfig/inventory/selectors";
-import { RootState } from "reduxConfig/config/rootReducer";
+import { RootState } from "@store";
 
 import { CollectionCard } from "@types";
 
