@@ -4,7 +4,13 @@ import { Typography } from "@mui/material";
 
 import { CardItem, Flex } from "@components";
 
-import { Card } from "@types";
+import { CollectionCard } from "@types";
+
+interface LocationState {
+  state: {
+    collectionItem: CollectionCard;
+  };
+}
 
 /**
  * @todo fallback for direct navigation
@@ -12,9 +18,9 @@ import { Card } from "@types";
  * @constructor
  */
 const CollectionItem: FC = () => {
-  const { state } = useLocation();
-  // @ts-ignore
-  const inventoryItem = state.inventoryItem as Card;
+  const {
+    state: { collectionItem },
+  } = useLocation() as LocationState;
 
   return (
     <Flex
@@ -24,7 +30,7 @@ const CollectionItem: FC = () => {
       flexDirection="column"
     >
       <Typography variant="h4">Collection Item</Typography>
-      <CardItem {...inventoryItem} />
+      <CardItem {...collectionItem} />
     </Flex>
   );
 };

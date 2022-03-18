@@ -5,3 +5,4 @@ export const reducer = {
 };
 
 // export type RootState = ReturnType<typeof reducer>
+export * from "./collection";

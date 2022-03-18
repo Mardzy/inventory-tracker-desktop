@@ -3,29 +3,23 @@ import { connect } from "react-redux";
 import { Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import { CardItem, Flex, FilterButton } from "components";
+import { CardItem, Flex, FilterButton } from "@components";
 
-import {
-  fetchInventory,
-  InventoryProps,
-  Product,
-} from "reduxConfig/inventory/slice";
-import { inventorySelector } from "reduxConfig/inventory/selectors";
+import { fetchCollection } from "@slices";
 import { RootState } from "@store";
+import { Collection as CollectionProps, CollectionCard, Status } from "@types";
 
-import { CollectionCard } from "@types";
-
-interface CollectionProps {
-  fetchInventory: () => void;
-  data: InventoryProps;
+interface CollectionTypeProps {
+  fetchCollection: (userId: string) => void;
+  data: CollectionProps & Status;
 }
 
-const Collection: FC<CollectionProps> = ({ fetchInventory, data }) => {
-  const { error, errorMessage, items, loading } = data;
+const Collection: FC<CollectionTypeProps> = ({ fetchCollection, data }) => {
+  const { error, collection, status } = data;
 
   useEffect(() => {
-    fetchInventory();
-  }, [items]);
+    fetchCollection("me");
+  }, [collection]);
 
   return (
     <Flex
@@ -42,30 +36,28 @@ const Collection: FC<CollectionProps> = ({ fetchInventory, data }) => {
         rowSpacing={2}
         mt={0.5}
       >
-        {items?.map((product: Product) =>
-          product?.cards.map((card: CollectionCard, index: number) => (
-            <Grid key={index} item xs={6} sm={4} md={4} lg={2} xl={2}>
-              <Link
-                to={`/collection/${card.id}`}
-                state={{ inventoryItem: card }}
-              >
-                <CardItem productName={product?.productName} {...card} />
-              </Link>
-            </Grid>
-          ))
-        )}
+        {collection?.map((card: CollectionCard) => (
+          <Grid key={card.cardId} item xs={6} sm={4} md={4} lg={2} xl={2}>
+            <Link
+              to={`/collection/${card.id}`}
+              state={{ collectionItem: card }}
+            >
+              <CardItem productName={card.productName} {...card} />
+            </Link>
+          </Grid>
+        ))}
         {/*  load more button to integrate with fetch inventory*/}
       </Grid>
     </Flex>
   );
 };
 
-const mapStateToProps = (state: RootState) => ({
-  data: inventorySelector(state),
+const mapStateToProps = ({ collection }: RootState) => ({
+  collection,
 });
 
 const mapDispatchToProps = {
-  fetchInventory,
+  fetchCollection,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Collection);

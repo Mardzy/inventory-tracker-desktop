@@ -14,12 +14,12 @@ export const initialState: Collection & Status = {
 
 export const fetchCollection = createAsyncThunk(
   "collection/fetchCollection",
-  async (userId: string, { rejectWithValue }) => {
+  async (userId: string | null, { rejectWithValue }) => {
     try {
       // console.log("args: ", userId);
       const response: Collection = JSON.parse(JSON.stringify(mockData));
 
-      return response.collection;
+      return response as Collection;
     } catch (err) {
       rejectWithValue((err as Error).message);
     }
