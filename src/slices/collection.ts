@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 
-import mockData from "../mocks/productDB.json";
-import { createUniqueId } from "../utils";
+import mockData from "./mocks/productDB.json";
+import { createUniqueId } from "./utils";
 
-import { Collection, CollectionCard, Status } from "@types";
+import { Collection, CollectionCard } from "@types";
 
-export const initialState: Collection & Status = {
+const initialState: Collection = {
   collection: [],
   error: null,
   owner: null,

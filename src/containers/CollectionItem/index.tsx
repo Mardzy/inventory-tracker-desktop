@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Params, useNavigate, useLocation, useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 
 import { CardItem, Flex } from "@components";
@@ -7,13 +7,12 @@ import { CardItem, Flex } from "@components";
 import { CollectionCard } from "@types";
 import { connect } from "react-redux";
 import { RootState } from "@store";
-import { getCollectionItem } from "@slices";
+import { getActiveItem } from "@slices";
 
-interface LocationState {
+interface LocationProps {
   state: {
     collectionItem: CollectionCard;
   };
-  pathname: string;
 }
 
 /**
@@ -22,20 +21,20 @@ interface LocationState {
  * @constructor
  */
 const CollectionItem: FC = ({}) => {
-  let {
+  const {
     state: { collectionItem },
-    pathname,
-  } = useLocation() as LocationState;
+  } = useLocation() as LocationProps;
+  const { id } = useParams() as Readonly<Params>;
   // if !collectionItem, use selector to get collection item from redux store
   // if no redux store get item from db
   useEffect(() => {
-    if (!collectionItem) {
-      const storeCollectionItem = 2434;
+    if (!collectionItem && id) {
       const args = {
         userId: "me",
-        id: pathname,
+        id,
       };
-      getCollectionItem(args);
+
+      getActiveItem(args);
     }
   }, [collectionItem]);
 
@@ -52,12 +51,12 @@ const CollectionItem: FC = ({}) => {
   );
 };
 
-const mapStateToProps = ({ collection }: RootState) => ({
-  collectionItem: collectionItemSelector(collection),
+const mapStateToProps = ({ activeItem, collection }: RootState) => ({
+  activeItem,
 });
 
 const mapDispatchToProps = {
-  getCollectionItem,
+  getActiveItem,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CollectionItem);

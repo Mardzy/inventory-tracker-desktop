@@ -24,7 +24,7 @@
       "@components":["components"],
       "@containers":["containers"],
       "@pages":["pages"],
-      "@routes":["routes"],
+      "@router":["router"],
       "@services":["services"],
       "@slices":["slices"],
       "@store":["store"],

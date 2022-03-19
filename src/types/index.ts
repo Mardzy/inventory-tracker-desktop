@@ -1,5 +1,5 @@
 export * from "./collection";
-export * from "./marketplace";
+export * from "./collectionItem";
 export * from "./productDB";
 
 export interface Card {
@@ -18,7 +18,7 @@ export interface Card {
   id: string | number;
 }
 
-export interface Status {
+export interface RequestStatus {
   error: string | null;
   status: "idle" | "pending" | "fulfilled" | "rejected";
 }

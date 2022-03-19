@@ -1,4 +1,4 @@
-import { Card } from ".";
+import { Card, RequestStatus } from ".";
 
 /**
  * Collection Types
@@ -20,7 +20,7 @@ export interface CollectionCard extends Card {
     | "personal collection";
 }
 
-export interface Collection {
+export interface Collection extends RequestStatus {
   owner: string | null;
   collection: CollectionCard[];
 }

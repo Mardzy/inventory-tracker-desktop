@@ -18,7 +18,7 @@ module.exports = {
       "@components": resolve(__dirname, "./src/components"),
       "@containers": resolve(__dirname, "./src/containers"),
       "@pages": resolve(__dirname, "./src/pages"),
-      "@routes": resolve(__dirname, "./src/routes"),
+      "@router": resolve(__dirname, "./src/router"),
       "@services": resolve(__dirname, "./src/services"),
       "@slices": resolve(__dirname, "./src/slices"),
       "@store": resolve(__dirname, "./src/store"),

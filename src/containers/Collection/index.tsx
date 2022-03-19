@@ -1,17 +1,23 @@
 import React, { FC, useEffect } from "react";
 import { connect } from "react-redux";
 import { Grid, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
 
 import { CardItem, Flex, FilterButton } from "@components";
 
 import { getCollection } from "@slices";
 import { RootState } from "@store";
-import { Collection as CollectionProps, CollectionCard, Status } from "@types";
+import { navigateWithState } from "../utils";
+import { routes } from "@router";
+
+import {
+  Collection as CollectionProps,
+  CollectionCard,
+  RequestStatus,
+} from "@types";
 
 interface CollectionTypeProps {
   getCollection: (userId: string) => void;
-  data: CollectionProps & Status;
+  data: CollectionProps & RequestStatus;
 }
 
 const Collection: FC<CollectionTypeProps> = ({ getCollection, data }) => {
@@ -38,12 +44,16 @@ const Collection: FC<CollectionTypeProps> = ({ getCollection, data }) => {
       >
         {collection?.map((card: CollectionCard) => (
           <Grid key={card.cardId} item xs={6} sm={4} md={4} lg={2} xl={2}>
-            <Link
-              to={`/collection/${card.id}`}
-              state={{ collectionItem: card }}
-            >
-              <CardItem productName={card.productName} {...card} />
-            </Link>
+            <CardItem
+              onClick={() =>
+                navigateWithState(
+                  routes.collectionItem.to.replace(":id", card.id as string),
+                  card
+                )
+              }
+              productName={card.productName}
+              {...card}
+            />
           </Grid>
         ))}
         {/*  load more button to integrate with fetch inventory*/}
